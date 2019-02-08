@@ -64,7 +64,7 @@ namespace DatingApp.API
 
             // weak cors implementation
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-            app.UseAuthentication()
+            app.UseAuthentication();
             app.UseMvc();
         }
     }
