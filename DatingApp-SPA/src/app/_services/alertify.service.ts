@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-// this wrapper is just a demonstration
+// this wrapper is just a demonstration.. can be used globally even without this service
 // already imported via angular.json. added just to avoid lint errors
 declare let alertify: any;
 
