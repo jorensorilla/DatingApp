@@ -8,6 +8,8 @@ import { AuthGuard } from './_guards/auth.guard';
 export const appRoutes: Routes = [
     {path: '', component: HomeComponent}, // do not set value in path as setting it
     // to home will redirect you to nowhere when localhost:4200 is accessed
+
+    // dummy route with child routes
     {
         path: '', // if this has a value then localhost:4200/<path>members
         runGuardsAndResolvers: 'always',
