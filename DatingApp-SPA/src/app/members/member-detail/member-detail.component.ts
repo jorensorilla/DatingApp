@@ -11,19 +11,21 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MemberDetailComponent implements OnInit {
   user: User;
-  constructor(private userService: UserService, private alertify: AlertifyService, 
+  constructor(private userService: UserService, private alertify: AlertifyService,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.loadUser();
-  }
-  // members/4
-  loadUser() {
-    // get the id parameter of the URL, convert it to number,
-    this.userService.getUser(+this.route.snapshot.params['id']).subscribe((user: User) => {
-      this.user = user;
-    }, error => {
-      this.alertify.error(error);
+    this.route.data.subscribe(data => {
+      this.user = data['user'];
     });
   }
+  // members/4
+  // loadUser() {
+  //   // get the id parameter of the URL, convert it to number,
+  //   this.userService.getUser(+this.route.snapshot.params['id']).subscribe((user: User) => {
+  //     this.user = user;
+  //   }, error => {
+  //     this.alertify.error(error);
+  //   });
+  // }
 }
