@@ -23,7 +23,7 @@ import { MemberCardComponent } from './members/member-card/member-card.component
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
-
+import { NgxGalleryModule } from 'ngx-gallery';
 // needed along with JwtModule to allow the token to be inserted on the headers of each request made
 // to the whitelisteddomains
 export function tokenGetter() {
@@ -55,7 +55,8 @@ export function tokenGetter() {
             whitelistedDomains: ['localhost:5000'],
             blacklistedRoutes: ['localhost:5000/api/auth']
         }
-      })
+      }),
+      NgxGalleryModule
    ],
    providers: [
       AuthService,
