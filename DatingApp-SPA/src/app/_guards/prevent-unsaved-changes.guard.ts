@@ -2,7 +2,8 @@ import { MemberEditComponent } from '../members/member-edit/member-edit.componen
 import { Injectable } from '@angular/core';
 import { CanDeactivate } from '@angular/router';
 
-
+// used to prevent users from clicking other routes in the page causing problems like unsaved changes
+// in a form or field
 @Injectable()
 export class PreventUnsavedChanges implements CanDeactivate<MemberEditComponent> {
     canDeactivate(component: MemberEditComponent) {

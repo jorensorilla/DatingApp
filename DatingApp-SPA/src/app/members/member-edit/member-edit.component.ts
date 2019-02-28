@@ -3,6 +3,8 @@ import { User } from '../../_models/user';
 import { ActivatedRoute } from '@angular/router';
 import { AlertifyService } from '../../_services/alertify.service';
 import { NgForm } from '@angular/forms';
+import { AuthService } from '../../_services/auth.service';
+import { UserService } from '../../_services/user.service';
 
 @Component({
   selector: 'app-member-edit',
@@ -12,12 +14,15 @@ import { NgForm } from '@angular/forms';
 export class MemberEditComponent implements OnInit {
   user: User;
   @ViewChild('editForm') editForm: NgForm; // used to access the edit form on the html
+
+  // display prompt when user closes tab while the form is dirty
   @HostListener('window:beforeunload', ['$event']) unloadNotification($event: any) {
     if (this.editForm.dirty) {
       $event.returnValue = true;
     }
   }
-  constructor(private route: ActivatedRoute, private alertify: AlertifyService) { }
+  constructor(private route: ActivatedRoute, private alertify: AlertifyService,
+    private userService: UserService, private authService: AuthService) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
@@ -27,8 +32,12 @@ export class MemberEditComponent implements OnInit {
 
   updateUser() {
     console.log(this.user);
-    this.alertify.success('Profile updated successfully!');
-    this.editForm.reset(this.user);
+    this.userService.updateUser(this.authService.decodedToken.nameid, this.user).subscribe(next => {
+      this.alertify.success('Profile updated successfully!');
+      this.editForm.reset(this.user);
+    }, error => {
+      this.alertify.error(error);
+    });
   }
 
 }
