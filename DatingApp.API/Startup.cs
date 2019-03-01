@@ -44,6 +44,7 @@ namespace DatingApp.API
                 }); // ignores the "Self referencing loop detected for property 'user' with type 'DatingApp.API.Models.User" error
                     
             services.AddCors();
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddAutoMapper();
             services.AddTransient<Seed>();
             services.AddScoped<IAuthRepository, AuthRepository>();
