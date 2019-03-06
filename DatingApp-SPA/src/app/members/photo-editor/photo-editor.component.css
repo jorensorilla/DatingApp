@@ -1,0 +1,14 @@
+img.img-thumbnail {
+    height: 100px;
+    min-width: 100px !important; /* !important - to override any 3rd party styling such as bootstrap */
+    margin-bottom: 2px;
+
+}
+
+.nv-file-over {
+    border: dotted 3px red;
+}
+
+input[type=file] {
+    color: transparent;
+}
