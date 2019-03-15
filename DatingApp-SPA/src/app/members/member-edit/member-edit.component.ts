@@ -13,6 +13,7 @@ import { UserService } from '../../_services/user.service';
 })
 export class MemberEditComponent implements OnInit {
   user: User;
+  photoUrl: string;
   @ViewChild('editForm') editForm: NgForm; // used to access the edit form on the html
 
   // display prompt when user closes tab while the form is dirty
@@ -28,6 +29,7 @@ export class MemberEditComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.user = data['user'];
     });
+    this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
   }
 
   updateUser() {
