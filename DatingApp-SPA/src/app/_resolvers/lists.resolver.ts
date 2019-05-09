@@ -21,7 +21,7 @@ export class ListsResolver implements Resolve<User[]> {
     resolve(route: ActivatedRouteSnapshot): Observable<User[]> {
         // using a resolve automatically subscribes to the method
         // to catch errors that occur to redirect the user back, we need to use a pipe (rxjs)
-        return this.userService.getUsers(this.pageNumber, this.pageSize, this.likesParam).pipe(
+        return this.userService.getUsers(this.pageNumber, this.pageSize, null, this.likesParam).pipe(
             catchError(error => {
                 this.alertify.error('Problem retrieving data');
                 this.router.navigate(['/home']);

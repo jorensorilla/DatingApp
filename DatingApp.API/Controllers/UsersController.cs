@@ -27,8 +27,9 @@ namespace DatingApp.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetUsers(UserParams userParams)
-        {   var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+        public async Task<IActionResult> GetUsers([FromQuery]UserParams userParams)
+        {   
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
             var userFromRepo = await _repo.GetUser(currentUserId);
 
             userParams.UserId = currentUserId;
