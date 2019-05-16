@@ -94,9 +94,18 @@ namespace DatingApp.API
 
             // weak cors implementation
             // seeder.SeedUsers();
-            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            //app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            app.UseCors(x => x.WithOrigins("http://localhost:4200")
+                .AllowAnyMethod().AllowAnyHeader().AllowCredentials());
             app.UseAuthentication();
-            app.UseMvc();
+            app.UseDefaultFiles(); // look for index.html or other default files
+            app.UseStaticFiles(); // use static files in angular.json output path folder
+            app.UseMvc(routes => {
+                routes.MapSpaFallbackRoute(
+                    name: "spa-fallback",
+                    defaults: new { controller = "Fallback", action = "Index"}
+                );
+            }); // routes: used to tell api to let spa handle routes that it cant
         }
     }
 }

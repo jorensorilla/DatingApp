@@ -10,7 +10,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DatingApp.API.Controllers
-{
+{   
+    // ControllerBase class if for an MVC controller without view support (used for WebAPI only)
     [ServiceFilter(typeof(LogUserActivity))]
     [Authorize] // anyone accessing this controller should be authorized
     [Route("api/[controller]")]
